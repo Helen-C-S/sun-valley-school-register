@@ -61,5 +61,5 @@ class Classroom:
 
     # make the text nice
     def __str__(self):
-        return f"{self.__class_id}, {self.__teacher}, {self.__max_cap}"
+        return f"class_id: {self.__class_id}, Teacher:  {self.__teacher}, Maximum Capacity: {self.__max_cap}"
 

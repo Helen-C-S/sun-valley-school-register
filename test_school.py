@@ -5,6 +5,8 @@ from pupil import Pupil
 from classroom import Classroom
 from datetime import date
 
+from school import School
+
 # # test enums 4.11.2026
 # gender = Gender.FEMALE
 # print(gender.name, gender.value)
@@ -146,3 +148,18 @@ try:
     c = Classroom("xA", "Katrina", 25)
 except ValueError as e:
     print("Expected error:", e)
+
+# add pupil to school, good case 8.11.2026
+p1 = Pupil("Anna", "Hansen", date(2014, 3, 2), Gender.FEMALE)
+p2 = Pupil("Jens", "Rasmussen", date(2014, 7, 26), Gender.MALE)
+school = School()
+school.add_pupil(p1)
+school.add_pupil(p2)
+school.read_pupils()
+# add classroom to school, good case 8.11.2026
+c1 = Classroom("7A", "Katrina", 25)
+c2 = Classroom("0B", "Christina", 25)
+school.add_classroom(c1)
+school.add_classroom(c2)
+school.read_classrooms()
+
