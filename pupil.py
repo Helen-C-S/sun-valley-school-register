@@ -3,6 +3,8 @@
 from datetime import date
 from enums import Gender
 
+MAX_NAME_LENGTH = 50
+
 
 class Pupil:
     def __init__(self, first_name, last_name, birthday, gender, middle_name=None, allergies=None):
@@ -18,21 +20,42 @@ class Pupil:
 
     # setters
     def set_first_name(self, first_name):
-        self.__first_name = first_name
+        if not first_name or not first_name.strip():
+            raise ValueError("First name cannot be empty")
+        if len(first_name.strip()) > MAX_NAME_LENGTH:
+            raise ValueError("First name cannot be longer than {} characters".format(MAX_NAME_LENGTH))
+        self.__first_name = first_name.strip()
 
     def set_last_name(self, last_name):
-        self.__last_name = last_name
+        if not last_name or not last_name.strip():
+            raise ValueError("Last name cannot be empty")
+        if len(last_name.strip()) > MAX_NAME_LENGTH:
+            raise ValueError("Last name cannot be longer than {} characters".format(MAX_NAME_LENGTH))
+        self.__last_name = last_name.strip()
 
     def set_birthday(self, birthday):
+        if isinstance(birthday, str):
+            birthday = date.fromisoformat(birthday) # raises ValueError on bad format
+        if birthday >= date.today():
+            raise ValueError("Birthday cannot be earlier than today's date")
         self.__birthday = birthday
 
     def set_gender(self, gender):
+        if not isinstance(gender, Gender):
+            raise ValueError("Gender must be either MALE, FEMALE or NONBINARY")
         self.__gender = gender
 
     def set_middle_name(self, middle_name):
-        self.__middle_name = middle_name
+        if middle_name is None or not middle_name.strip():
+            self.__middle_name = None
+        elif len(middle_name.strip()) > MAX_NAME_LENGTH:
+            raise ValueError("Middle name cannot be longer than {} characters".format(MAX_NAME_LENGTH))
+        else:
+            self.__middle_name = middle_name
 
     def set_allergies(self, allergies):
+        if allergies is None or not allergies.strip():
+            self.__allergies = None
         self.__allergies = allergies
 
     # getters
@@ -53,4 +76,16 @@ class Pupil:
 
     def get_allergies(self):
         return self.__allergies
+
+    def get_age(self):
+        today = date.today()
+        b = self.__birthday
+        return today.year - b.year - ((today.month, today.day) < (b.month, b.day))
+
+    def has_allergies(self):
+        return self.__allergies is not None
+
+    # make the text nice
+    def __str__(self):
+        return f"{self.__first_name}, {self.__last_name}, {self.__birthday}, {self.__gender.value}, {self.__middle_name}"
 
