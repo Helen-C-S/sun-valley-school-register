@@ -44,7 +44,7 @@ class School:
         self.__next_pupil_id = next_pupil_id
 
 
-    # PREVENT DUPLICATION OF CLASSROOMS WHEN CREATING 10.11.2026
+    # See if classroom already exists 10.11.2026
     def find_classroom(self, class_id):
         for classroom in self.__classrooms:
             if classroom.get_class_id() == class_id:
@@ -52,7 +52,7 @@ class School:
         return None
 
 
-    # CREATE
+    # CREATE and prevent duplication of classrooms
     def add_classroom(self, classroom):
         if self.find_classroom(classroom.get_class_id()) is not None:
             raise ValueError(f"Classroom {classroom.get_class_id()} already exists")
