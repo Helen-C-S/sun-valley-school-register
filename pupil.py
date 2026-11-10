@@ -58,6 +58,16 @@ class Pupil:
             self.__allergies = None
         self.__allergies = allergies
 
+    # pupil_id added to pupil objects before pupil appended to pupils
+    def set_pupil_id(self, pupil_id):
+        try:
+            pupil_id = int(pupil_id) # 10.11.2026
+        except ValueError:
+            raise ValueError("pupil_id must be a whole number")
+        if pupil_id < 1:
+            raise ValueError("pupil_id must greater than 1")
+        self.__pupil_id = pupil_id
+
     # getters
     def get_first_name(self):
         return self.__first_name
@@ -85,7 +95,12 @@ class Pupil:
     def has_allergies(self):
         return self.__allergies is not None
 
-    # make the text nice
+    def get_pupil_id(self):
+        return self.__pupil_id
+
+    # to print the contents of the object
     def __str__(self):
-        return f"{self.__first_name}, {self.__last_name}, {self.__birthday}, {self.__gender.value}, {self.__middle_name}"
+        return (f"First name: {self.__first_name}, Last name: {self.__last_name},"
+                f"Birthday:  {self.__birthday}, Gender: {self.__gender.value},"
+                f"\nMiddle Name: {self.__middle_name}, Allergies: {self.__allergies}")
 

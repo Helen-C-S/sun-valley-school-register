@@ -20,11 +20,12 @@ class Classroom:
         if len(class_id) < 2 or not class_id[-1].isalpha():
             raise ValueError("Class ID must be a grade followed by a letter")
         grade_part = class_id[:-1]
-        letter_part = class_id[-1]
         try:
             grade = int(grade_part)
         except ValueError:
             raise ValueError("Grade must be a whole number")
+        letter_part = class_id[-1]
+
         if grade < MIN_GRADE or grade > MAX_GRADE:
             raise ValueError("Grade must be between {} and {}".format(MIN_GRADE, MAX_GRADE))
         if letter_part not in Letter.__members__:
