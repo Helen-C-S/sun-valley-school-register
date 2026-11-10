@@ -32,7 +32,7 @@ class School:
             raise ValueError("next_pupil_id cannot be less than 1")
 
         # auto-correct: never reuse an existing pupil_id
-        if self.__pupils:
+        if self.__pupils: # auto-correct does not run if pupils list empty
             existing_ids = []
             for p in self.__pupils:
                 existing_ids.append(p.get_pupil_id())
