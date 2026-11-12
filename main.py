@@ -99,5 +99,5 @@ def main():
 
 
 
-if __name__ == "__main__": # this checks that running file is main. So main can only be called from main.py
+if __name__ == "__main__": # this checks that running file is main.py
     main()
