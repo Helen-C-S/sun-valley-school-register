@@ -209,20 +209,22 @@ from school import School
 # except ValueError as e:
 #     print(e)
 
-# check the pupil_id auto-correct 10.11.2026
-p1 = Pupil("Anna", "Hansen", date(2014, 3, 2), Gender.FEMALE)
-p2 = Pupil("Jens", "Rasmussen", date(2014, 7, 26), Gender.MALE)
-school = School()
-school.add_pupil(p1)
-school.add_pupil(p2)
-print(p1.get_pupil_id())
-print(p2.get_pupil_id())
-school.set_next_pupil_id(1)
-p3 = Pupil("Sophie", "Larsen", date(2014, 2, 8), Gender.NONBINARY)
-school.add_pupil(p3)
-print(p3.get_pupil_id())
-print(school.get_next_pupil_id())
+def test_pupil_id_autocorrect():# 10.11.2026
+    p1 = Pupil("Anna", "Hansen", date(2014, 3, 2), Gender.FEMALE)
+    p2 = Pupil("Jens", "Rasmussen", date(2014, 7, 26), Gender.MALE)
+    school = School()
+    school.add_pupil(p1)
+    school.add_pupil(p2)
+    print(p1.get_pupil_id())
+    print(p2.get_pupil_id())
+    school.set_next_pupil_id(1)
+    p3 = Pupil("Sophie", "Larsen", date(2014, 2, 8), Gender.NONBINARY)
+    school.add_pupil(p3)
+    print(p3.get_pupil_id())
+    print(school.get_next_pupil_id())
 
+
+#test_pupil_id_autocorrect()
 
 
 
