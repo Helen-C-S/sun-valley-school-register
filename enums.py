@@ -3,9 +3,9 @@
 from enum import Enum
 
 class Gender(Enum):
-    MALE = "Male"
-    FEMALE = "Female"
-    NONBINARY = "Non-Binary"
+    M = "Male"
+    F = "Female"
+    N = "Non-Binary"
 
 class Letter(Enum):
     A = "A"

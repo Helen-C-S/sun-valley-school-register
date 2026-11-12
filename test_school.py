@@ -1,4 +1,5 @@
 # scripts to test that classes and data structures are working
+import user_input
 from enums import Gender
 from enums import Letter
 from pupil import Pupil
@@ -223,10 +224,27 @@ def test_pupil_id_autocorrect():# 10.11.2026
     print(p3.get_pupil_id())
     print(school.get_next_pupil_id())
 
-
 #test_pupil_id_autocorrect()
 
+# test the user input for registering pupil 12.11.2026
+def test_name_input():
+    first_name = user_input.ask_first_name()
+    middle_name = user_input.ask_middle_name()
+    last_name = user_input.ask_last_name()
+    print(first_name, middle_name, last_name)
 
+#test_name_input()
+
+# test the user input for Gender 12.11.2026
+def test_gender_input():
+    gender = user_input.ask_gender()
+    print(gender.value)
+
+test_gender_input()
+
+# test birthdays & allergies
+
+# test register pupils
 
 
 
