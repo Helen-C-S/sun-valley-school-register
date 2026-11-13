@@ -37,7 +37,7 @@ class Pupil:
         if isinstance(birthday, str):
             birthday = date.fromisoformat(birthday) # raises ValueError on bad format
         if birthday >= date.today():
-            raise ValueError("Birthday cannot be earlier than today's date")
+            raise ValueError("Birthday cannot be in the future")
         self.__birthday = birthday
 
     def set_gender(self, gender):
@@ -51,13 +51,13 @@ class Pupil:
         elif len(middle_name.strip()) > MAX_NAME_LENGTH:
             raise ValueError("Middle name cannot be longer than {} characters".format(MAX_NAME_LENGTH))
         else:
-            self.__middle_name = middle_name
+            self.__middle_name = middle_name.strip()
 
     def set_allergies(self, allergies):
         if allergies is None or not allergies.strip():
             self.__allergies = None
         else:
-            self.__allergies = allergies
+            self.__allergies = allergies.strip()
 
     # pupil_id added to pupil objects before pupil appended to pupils
     def set_pupil_id(self, pupil_id):
@@ -66,7 +66,7 @@ class Pupil:
         except ValueError:
             raise ValueError("pupil_id must be a whole number")
         if pupil_id < 1:
-            raise ValueError("pupil_id must greater than 1")
+            raise ValueError("pupil_id must be 1 or greater")
         self.__pupil_id = pupil_id
 
     # getters
@@ -101,6 +101,7 @@ class Pupil:
 
     # to print the contents of the object
     def __str__(self):
-        return (f"First name: {self.__first_name}, Middle Name: {self.__middle_name}, Last name: {self.__last_name},"
+        return (f"pupil_id: {self.__pupil_id} "
+                f"\nFirst name: {self.__first_name}, Middle Name: {self.__middle_name}, Last name: {self.__last_name},"
                 f"\nBirthday:  {self.__birthday}, Gender: {self.__gender.value}, Allergies: {self.__allergies}")
 

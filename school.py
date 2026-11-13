@@ -61,9 +61,9 @@ class School:
 
 
     # READ
-    def read_pupils(self):
-        for pupil in self.__pupils:
-            print(pupil)
+    # getters for pupils list
+    def get_pupils(self):
+        return list(self.__pupils)
 
     def read_classrooms(self):
         for classroom in self.__classrooms:

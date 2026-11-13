@@ -254,8 +254,11 @@ def test_allergies():
 
 # test build_pupil 13.11.2026 # good and bad cases tested
 def test_build_pupil():
-    submenus.build_pupil(school=School())
-test_build_pupil()
+    school = School()
+    p=submenus.build_pupil(school)
+    school.add_pupil(p) # assigns pupil_id
+    print(p)
+#test_build_pupil()
 
 # Input validation for name input in user_input updated 13.10.2026
 # first and last names must be at least two letters
@@ -263,6 +266,20 @@ test_build_pupil()
 #test_name_input()
 
 # build_pupil and add_pupil tested from main 13.11.2026
+
+# test school.read_all_pupils 13.11.2026
+def test_read_all_pupils():
+    school = School()
+    submenus.show_all_pupils(school)
+    p1 = Pupil("Anna", "Hansen", date(2014, 3, 2), Gender.F)
+    p2 = Pupil("Jens", "Rasmussen", date(2014, 7, 26), Gender.M)
+    school.add_pupil(p1)
+    school.add_pupil(p2)
+    submenus.show_all_pupils(school)
+#test_read_all_pupils()
+
+# show_all_pupils tested from main 13.11.2026
+
 
 
 

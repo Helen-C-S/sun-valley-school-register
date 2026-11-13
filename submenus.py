@@ -30,7 +30,7 @@ def pupil_menu(school):
                     school.add_pupil(p)
                     print(f"Registered: {p}")
             case "2":
-                continue
+                show_all_pupils(school)
             case "3":
                 continue
             case "4":
@@ -90,4 +90,14 @@ def build_pupil(school):
         return Pupil(first_name, last_name, birthday, gender,
                   middle_name=middle_name, allergies=allergies)
     except ValueError as e:
-        print("Could not register pupil:", e)
+        print("Could not create pupil:", e)
+
+
+# READ ALL PUPILS
+def show_all_pupils(school):
+    pupils = school.get_pupils()
+    if not pupils:
+        print("No pupils registered yet")
+    for p in pupils:
+        print(p)
+
