@@ -40,7 +40,6 @@ class Pupil:
 
     # pupil_id added to pupil objects before pupil appended to pupils
     def set_pupil_id(self, pupil_id):
-
         self.__pupil_id = pupil_id
 
     # getters
