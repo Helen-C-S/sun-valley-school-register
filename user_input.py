@@ -12,16 +12,28 @@ from school import School
 
 
 def ask_first_name():
-    first_name = input("What is the pupil's first name:  ")
-    return first_name
+    while True:
+        try:
+            first_name = input("What is the pupil's first name:  ")
+            if len(first_name) < 2:
+                raise ValueError
+            return first_name
+        except ValueError:
+            print("The pupil's name must contain at least two letters")
 
-def ask_middle_name(): # no middle name is caught in the validation
+def ask_middle_name(): # no middle name is converted to None in the validation
     middle_name = input("What is the pupil's middle name (Please push Enter, if none):  ")
     return middle_name
 
 def ask_last_name():
-    last_name = input("What is the pupil's last name:  ")
-    return last_name
+    while True:
+        try:
+            last_name = input("What is the pupil's last name:  ")
+            if len(last_name) < 2:
+                raise ValueError
+            return last_name
+        except ValueError:
+            print("The pupil's last name must contain at least two letters")
 
 def ask_gender():
     while True:

@@ -56,7 +56,8 @@ class Pupil:
     def set_allergies(self, allergies):
         if allergies is None or not allergies.strip():
             self.__allergies = None
-        self.__allergies = allergies
+        else:
+            self.__allergies = allergies
 
     # pupil_id added to pupil objects before pupil appended to pupils
     def set_pupil_id(self, pupil_id):
@@ -100,7 +101,6 @@ class Pupil:
 
     # to print the contents of the object
     def __str__(self):
-        return (f"First name: {self.__first_name}, Last name: {self.__last_name},"
-                f"Birthday:  {self.__birthday}, Gender: {self.__gender.value},"
-                f"\nMiddle Name: {self.__middle_name}, Allergies: {self.__allergies}")
+        return (f"First name: {self.__first_name}, Middle Name: {self.__middle_name}, Last name: {self.__last_name},"
+                f"\nBirthday:  {self.__birthday}, Gender: {self.__gender.value}, Allergies: {self.__allergies}")
 

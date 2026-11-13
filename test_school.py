@@ -1,11 +1,11 @@
 # scripts to test that classes and data structures are working
 import user_input
+import submenus
 from enums import Gender
 from enums import Letter
 from pupil import Pupil
 from classroom import Classroom
 from datetime import date
-
 from school import School
 
 # # test enums 4.11.2026
@@ -226,7 +226,7 @@ def test_pupil_id_autocorrect():# 10.11.2026
 
 #test_pupil_id_autocorrect()
 
-# test the user input for registering pupil 12.11.2026
+# test the user input for build pupil 12.11.2026
 def test_name_input():
     first_name = user_input.ask_first_name()
     middle_name = user_input.ask_middle_name()
@@ -246,13 +246,23 @@ def test_birthday():
     print(birthday)
 #test_birthday()
 
-# test  allergies
+# test  allergies 13.11.2026
 def test_allergies():
     allergies = user_input.ask_allergies()
     print(allergies)
-test_allergies()
+#test_allergies()
 
-# test register pupils
+# test build_pupil 13.11.2026 # good and bad cases tested
+def test_build_pupil():
+    submenus.build_pupil(school=School())
+test_build_pupil()
+
+# Input validation for name input in user_input updated 13.10.2026
+# first and last names must be at least two letters
+# Test name input again 13.10.2026
+#test_name_input()
+
+# build_pupil and add_pupil tested from main 13.11.2026
 
 
 

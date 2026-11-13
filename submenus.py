@@ -25,7 +25,10 @@ def pupil_menu(school):
 
         match choice:
             case "1":
-                register_pupil(school)
+                p = build_pupil(school)
+                if p is not None:
+                    school.add_pupil(p)
+                    print(f"Registered: {p}")
             case "2":
                 continue
             case "3":
@@ -76,17 +79,15 @@ def classroom_menu(school):
             case _:
                 print("Invalid choice")
 
-def register_pupil(school):
+def build_pupil(school):
     first_name = user_input.ask_first_name()
-    # middle_name = user_input.ask_middle_name()
-    # last_name = user_input.ask_last_name()
-    # birthday = user_input.ask_birthday()
-    # gender = user_input.ask_gender()
-    # allergies = user_input.ask_allergies()
-    # try:
-    #     p = Pupil(first_name, last_name, birthday, gender,
-    #               middle_name=middle_name, allergies=allergies)
-    #     school.add_pupil(p)
-    #     print(f"Registered: {p}")
-    # except ValueError as e:
-    #     print("Could not register pupil:", e)
+    middle_name = user_input.ask_middle_name()
+    last_name = user_input.ask_last_name()
+    birthday = user_input.ask_birthday()
+    gender = user_input.ask_gender()
+    allergies = user_input.ask_allergies()
+    try:
+        return Pupil(first_name, last_name, birthday, gender,
+                  middle_name=middle_name, allergies=allergies)
+    except ValueError as e:
+        print("Could not register pupil:", e)
