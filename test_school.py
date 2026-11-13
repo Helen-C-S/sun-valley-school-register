@@ -232,15 +232,13 @@ def test_name_input():
     middle_name = user_input.ask_middle_name()
     last_name = user_input.ask_last_name()
     print(first_name, middle_name, last_name)
-
 #test_name_input()
 
 # test the user input for Gender 12.11.2026
 def test_gender_input():
     gender = user_input.ask_gender()
     print(gender.value)
-
-test_gender_input()
+#test_gender_input()
 
 # test birthdays & allergies
 
