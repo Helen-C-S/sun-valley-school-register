@@ -30,7 +30,7 @@ def pupil_menu(school):
                     school.add_pupil(p)
                     print(f"Registered: {p}")
             case "2":
-                show_all_pupils(school)
+                display_all_pupils()
             case "3":
                 continue
             case "4":
@@ -94,7 +94,7 @@ def build_pupil(school):
 
 
 # READ ALL PUPILS
-def show_all_pupils(school):
+def display_all_pupils(school):
     pupils = school.get_pupils()
     if not pupils:
         print("No pupils registered yet")

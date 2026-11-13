@@ -53,14 +53,28 @@ class School:
         print(f"Classroom {classroom.get_class_id()} is now added to the school.")
 
 
-    # READ
+    # READ (display_all_pupils functionality found in submenus)
     # getters for pupils list
     def get_pupils(self):
         return list(self.__pupils)
 
     def read_classrooms(self):
-        for classroom in self.__classrooms:
-            print(classroom)
+        return list(self.__classrooms)
 
     def get_next_pupil_id(self):
         return self.__next_pupil_id
+
+    # UPDATE (edit_pupil functionality in submenus)
+    # find_pupil supports both UPDATE and DELETE
+    def find_pupil(self, pupil_id):
+        for pupil in self.__pupils:
+            if pupil.get_pupil_id() == pupil_id:
+                return pupil
+        return None
+
+    def delete_pupil(self, pupil_id):
+        pupil = self.find_pupil(pupil_id)
+        if pupil is None:
+            return False
+        self.__pupils.remove(pupil)
+        return True

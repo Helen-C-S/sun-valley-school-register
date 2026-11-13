@@ -321,11 +321,32 @@ def test_validate_creating_pupil():
         # print(p14)
     except ValueError as e:
         print(e)
-test_validate_creating_pupil()
+#test_validate_creating_pupil()
 
 # updated pupil_id re-factored validation 13.11.2026
 #test_pupil_id_autocorrect()
 
+# test find pupil functionality (supports update and delete) 13.11.2026
+def test_find_pupil(test_id):
+    school = School()
+    p1=Pupil("Anna", "Hansen", date(2014, 3, 2), Gender.F)
+    school.add_pupil(p1)
+    p2 = school.find_pupil(test_id)
+    print(p2)
+test_find_pupil(1)
+
+# test delete_pupil 13.11.2026
+def test_delete_pupil(test_id):
+    school = School()
+    p1=Pupil("Anna", "Hansen", date(2014, 3, 2), Gender.F)
+    p2=Pupil("Leo", "Schmidt", date(2014, 3, 15), Gender.N)
+    school.add_pupil(p1)
+    school.add_pupil(p2)
+    submenus.display_all_pupils(school)
+    school.delete_pupil(test_id)
+    print("")
+    submenus.display_all_pupils(school)
+test_delete_pupil(1)
 
 
 
