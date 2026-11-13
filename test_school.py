@@ -240,7 +240,17 @@ def test_gender_input():
     print(gender.value)
 #test_gender_input()
 
-# test birthdays & allergies
+# test birthday 13.11.2026. Tested with valid and invalid dates, including 31 Feb
+def test_birthday():
+    birthday = user_input.ask_birthday()
+    print(birthday)
+#test_birthday()
+
+# test  allergies
+def test_allergies():
+    allergies = user_input.ask_allergies()
+    print(allergies)
+test_allergies()
 
 # test register pupils
 
