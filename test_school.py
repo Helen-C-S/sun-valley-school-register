@@ -211,15 +211,15 @@ from school import School
 #     print(e)
 
 def test_pupil_id_autocorrect():# 10.11.2026
-    p1 = Pupil("Anna", "Hansen", date(2014, 3, 2), Gender.FEMALE)
-    p2 = Pupil("Jens", "Rasmussen", date(2014, 7, 26), Gender.MALE)
+    p1 = Pupil("Anna", "Hansen", date(2014, 3, 2), Gender.F)
+    p2 = Pupil("Jens", "Rasmussen", date(2014, 7, 26), Gender.M)
     school = School()
     school.add_pupil(p1)
     school.add_pupil(p2)
     print(p1.get_pupil_id())
     print(p2.get_pupil_id())
     school.set_next_pupil_id(1)
-    p3 = Pupil("Sophie", "Larsen", date(2014, 2, 8), Gender.NONBINARY)
+    p3 = Pupil("Sophie", "Larsen", date(2014, 2, 8), Gender.N)
     school.add_pupil(p3)
     print(p3.get_pupil_id())
     print(school.get_next_pupil_id())
@@ -247,10 +247,10 @@ def test_birthday():
 #test_birthday()
 
 # test  allergies 13.11.2026
-def test_allergies():
+def test_ask_allergies():
     allergies = user_input.ask_allergies()
     print(allergies)
-#test_allergies()
+#test_ask_allergies()
 
 # test build_pupil 13.11.2026 # good and bad cases tested
 def test_build_pupil():
@@ -279,6 +279,52 @@ def test_read_all_pupils():
 #test_read_all_pupils()
 
 # show_all_pupils tested from main 13.11.2026
+
+# test refactored validators for pupil class 13.11.2026
+def test_validate_creating_pupil():
+    school = School()
+    try:
+        # good cases
+        p1 = Pupil("Anna", "Hansen", date(2014, 3, 2), Gender.F)
+        print(p1)
+        p2 = Pupil("Jens", "Rasmussen", date(2014, 7, 26), Gender.M)
+        print(p2)
+        # bad cases
+        #p3 = Pupil("A", "Hansen", date(2014, 3, 2), Gender.F)
+        #p4 = Pupil(("A"*51), "Hansen", date(2014, 3, 2), Gender.F)
+        #p5 = Pupil("Jens", "", date(2014, 7, 26), Gender.M)
+        # test optional text attributes
+        p6 = Pupil("Anna", "Hansen", date(2014, 3, 2), Gender.F, middle_name="Marie")
+        print(p6)
+        # other cases
+        # p7 = Pupil("Anna", "Hansen", date(2014, 3, 2), Gender.F, middle_name="")
+        # print(p7)
+        # p8 = Pupil("Anna", "Hansen", date(2014, 3, 2), Gender.F, middle_name=("M"*51))
+        # print(p8)
+        # test allergies
+        # p9 = Pupil("Anna", "Hansen", date(2014, 3, 2), Gender.F, allergies="Peanuts")
+        # print(p9)
+        # p10 = Pupil("Anna", "Hansen", date(2014, 3, 2), Gender.F, allergies="")
+        # print(p10)
+        # test validate date
+        #p11 = Pupil("Anna", "Hansen", date(2014, 3, 2), Gender.F)
+        #print(p11)
+        #p12 = Pupil("Anna", "Hansen", date(2014, 3, 35), Gender.F)
+        #p12 = Pupil("Anna", "Hansen", date(2028, 3, 15), Gender.F)
+        #print(p12)
+        # test validate gender
+        # p13 = Pupil("Leo", "Schmidt", date(2014, 3, 15), Gender.N)
+        # print(p13)
+        # # test validate gender, bad case
+        #p14 = Pupil("Leo", "Schmidt", date(2014, 3, 15), Gender.L)
+        p14 = Pupil("Leo", "Schmidt", date(2014, 3, 15), "L")
+        # print(p14)
+    except ValueError as e:
+        print(e)
+test_validate_creating_pupil()
+
+# updated pupil_id re-factored validation 13.11.2026
+#test_pupil_id_autocorrect()
 
 
 

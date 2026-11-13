@@ -2,8 +2,7 @@
 
 from datetime import date
 from enums import Gender
-
-MAX_NAME_LENGTH = 50
+import validators
 
 
 class Pupil:
@@ -20,53 +19,28 @@ class Pupil:
 
     # setters
     def set_first_name(self, first_name):
-        if not first_name or not first_name.strip():
-            raise ValueError("First name cannot be empty")
-        if len(first_name.strip()) > MAX_NAME_LENGTH:
-            raise ValueError("First name cannot be longer than {} characters".format(MAX_NAME_LENGTH))
-        self.__first_name = first_name.strip()
+        self.__first_name = validators.validate_name(first_name, "First name")
 
     def set_last_name(self, last_name):
-        if not last_name or not last_name.strip():
-            raise ValueError("Last name cannot be empty")
-        if len(last_name.strip()) > MAX_NAME_LENGTH:
-            raise ValueError("Last name cannot be longer than {} characters".format(MAX_NAME_LENGTH))
-        self.__last_name = last_name.strip()
+        self.__last_name = validators.validate_name(last_name, "Last name")
+
 
     def set_birthday(self, birthday):
-        if isinstance(birthday, str):
-            birthday = date.fromisoformat(birthday) # raises ValueError on bad format
-        if birthday >= date.today():
-            raise ValueError("Birthday cannot be in the future")
-        self.__birthday = birthday
+        self.__birthday = validators.validate_date(birthday, "Birthday")
 
     def set_gender(self, gender):
-        if not isinstance(gender, Gender):
-            raise ValueError("Gender must be either MALE, FEMALE or NONBINARY")
-        self.__gender = gender
+        self.__gender = validators.validate_gender(gender)
 
     def set_middle_name(self, middle_name):
-        if middle_name is None or not middle_name.strip():
-            self.__middle_name = None
-        elif len(middle_name.strip()) > MAX_NAME_LENGTH:
-            raise ValueError("Middle name cannot be longer than {} characters".format(MAX_NAME_LENGTH))
-        else:
-            self.__middle_name = middle_name.strip()
+        self.__middle_name = validators.validate_optional_text(middle_name, "Middle name")
 
     def set_allergies(self, allergies):
-        if allergies is None or not allergies.strip():
-            self.__allergies = None
-        else:
-            self.__allergies = allergies.strip()
+        self.__allergies = validators.validate_optional_text(allergies, "Allergies")
+
 
     # pupil_id added to pupil objects before pupil appended to pupils
     def set_pupil_id(self, pupil_id):
-        try:
-            pupil_id = int(pupil_id) # 10.11.2026
-        except ValueError:
-            raise ValueError("pupil_id must be a whole number")
-        if pupil_id < 1:
-            raise ValueError("pupil_id must be 1 or greater")
+
         self.__pupil_id = pupil_id
 
     # getters

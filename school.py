@@ -1,5 +1,7 @@
 # create class School 8.11.2026
 from datetime import date
+
+import validators
 from enums import Gender
 from pupil import Pupil
 from classroom import Classroom
@@ -22,15 +24,7 @@ class School:
 
 
     def set_next_pupil_id(self, next_pupil_id): # required for loading and testing
-        if next_pupil_id is None or str(next_pupil_id).strip() == "":
-            raise ValueError("next_pupil_id cannot be empty")
-        try:
-            next_pupil_id = int(next_pupil_id)
-        except ValueError:
-            raise ValueError("next_pupil_id must be a whole number")
-        if next_pupil_id < 1:
-            raise ValueError("next_pupil_id cannot be less than 1")
-
+        self.__next_pupil_id = validators.validate_int_range(next_pupil_id, "next_pupil_id", 1)
         # auto-correct: never reuse an existing pupil_id
         if self.__pupils: # auto-correct does not run if pupils list empty
             existing_ids = []
@@ -40,7 +34,6 @@ class School:
             if next_pupil_id <= max_existing_id:
                 print(f"next_pupil_id {next_pupil_id} already in use, set to {max_existing_id + 1}")
                 next_pupil_id = max_existing_id + 1
-
         self.__next_pupil_id = next_pupil_id
 
 
