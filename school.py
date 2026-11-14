@@ -58,6 +58,14 @@ class School:
     def get_pupils(self):
         return list(self.__pupils)
 
+    #has_pupils functionality neccessary for READ, UPDATE, CREATE and SORT
+    def has_pupils(self):
+        pupils = self.__pupils
+        if not pupils:
+            return False
+        else:
+            return True
+
     def read_classrooms(self):
         return list(self.__classrooms)
 
@@ -66,14 +74,6 @@ class School:
 
     # UPDATE (edit_pupil functionality in submenus)
     # find_pupil supports both UPDATE and DELETE
-
-    def has_pupils(self):
-        pupils = self.get_pupils()
-        if not pupils:
-            return False
-        else:
-            return True
-
     def find_pupil(self, pupil_id):
         for pupil in self.__pupils:
             if pupil.get_pupil_id() == pupil_id:
@@ -86,3 +86,7 @@ class School:
             return False
         self.__pupils.remove(pupil)
         return True
+
+    # SORT PUPILS
+    def get_sorted_pupils(self):
+        return sorted(self.__pupils, key=lambda pupil: pupil.get_last_name())

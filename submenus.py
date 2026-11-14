@@ -79,6 +79,7 @@ def classroom_menu(school):
             case _:
                 print("Invalid choice")
 
+# CREATE PUPIL
 def build_pupil(school):
     first_name = user_input.ask_first_name()
     middle_name = user_input.ask_middle_name()
@@ -110,7 +111,7 @@ def remove_pupil(school):
         pupil_id = user_input.ask_which_pupil('delete', max_id)
         p = school.find_pupil(pupil_id)
         if p is None:
-            print(f"No pupil with id {pupil_id}")
+            print(f"No pupil with pupil_id {pupil_id}")
             return
         print(p)
         print("You are about to delete the following pupil:")
@@ -121,3 +122,11 @@ def remove_pupil(school):
     else:
         print("No pupils found")
 
+# SORT PUPIL
+def display_sorted_pupils(school):
+    if school.has_pupils():
+        sorted_list = school.get_sorted_pupils()
+        for p in sorted_list:
+            print(p)
+    else:
+        print("No pupils found")
