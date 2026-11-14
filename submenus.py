@@ -32,7 +32,7 @@ def pupil_menu(school):
             case "2": # retrieve all pupils
                 display_all_pupils(school)
             case "3":
-                continue
+                edit_pupil(school)
             case "4": # delete pupuil
                 remove_pupil(school)
             case "5":
@@ -102,6 +102,39 @@ def display_all_pupils(school):
             print(p)
     else:
         print("No pupils found")
+
+# UPDATE PUPIL
+def edit_pupil(school):
+    if not school.has_pupils():
+        print("No pupils found")
+        return
+    max_id = school.get_next_pupil_id() - 1
+    pupil_id = user_input.ask_which_pupil('update', max_id)
+    p = school.find_pupil(pupil_id)
+    if p is None:
+        print(f"No pupil with pupil_id {pupil_id}")
+        return
+    print(f"You are about to update the following pupil: \n{p}")
+    field = user_input.ask_pupil_field("update")
+    while True:
+        try:
+            # look up ask_<field> by name; relies on consistent naming
+            # Beyond scope of the assignment but the approach is known from MATLAB eval
+            ask_function = getattr(user_input, "ask_" + field)  # e.g. user_input.ask_birthday
+            new_value = ask_function()  # call it
+        except AttributeError:
+            print("Internal error. No function found...")
+        try:
+            school.update_pupil(pupil_id, field, new_value)
+            print(f"Pupil updated: \n{p}")
+            break
+        except ValueError as e:
+            print(e)
+            return
+
+
+
+
 
 
 # DELETE PUPIL

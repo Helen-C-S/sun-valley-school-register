@@ -455,4 +455,18 @@ def test_update_pupil():
         print(p1)
     except ValueError as e:
         print(e)
-test_update_pupil()
+#test_update_pupil()
+
+# test edit_pupil
+def test_edit_pupil():
+    school = School()
+    print("--new test--")
+    p1 = Pupil("Anna", "Rasmussen", date(2014, 3, 2), Gender.F)
+    p2 = Pupil("Leo", "Larsen", date(2014, 3, 15), Gender.N)
+    school.add_pupil(p1)
+    school.add_pupil(p2)
+    print("--print all pupils unsorted--")
+    submenus.display_all_pupils(school)
+    submenus.edit_pupil(school)
+test_edit_pupil()
+
