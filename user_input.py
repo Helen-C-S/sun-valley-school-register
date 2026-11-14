@@ -13,6 +13,7 @@ from pupil import Pupil
 from classroom import Classroom
 from school import School
 
+PUPIL_FIELDS = ("first_name", "last_name", "middle_name", "birthday", "gender", "allergies")
 
 def ask_first_name():
     while True:
@@ -112,4 +113,50 @@ def ask_confirmation(label):
     else:
         print(f"{label.capitalize()} cancelled")
         return False
+
+def ask_pupil_field(label):
+    print("")
+    print(f"Which pupil information field would you like to {label.lower()}?:  ")
+    print("1. First name")
+    print("2. Last name")
+    print("3. Middle name")
+    print("4. Birthday")
+    print("5. Gender")
+    print("6. Allergies")
+    print("0. None")
+    choice = input("Which choice would you like to make?  ")
+    match choice:
+        case "1":
+            field = "first_name"
+        case "2":
+            field = "last_name"
+        case "3":
+            field = "middle_name"
+        case "4":
+            field = "birthday"
+        case "5":
+            field = "gender"
+        case "6":
+            field = "allergies"
+        case "0":
+            print("Returning to main menu")
+            return
+        case _:
+            print("Invalid choice")
+    return field
+
+    items = list(field_name_options)
+    print(prompt)
+    for i, item in enumerate(items, start=1):
+        print(f"{i}. {item.value}")
+    while True:
+        choice = input("Please choose a number:  ")
+        try:
+            if int(choice) < 1:
+                raise IndexError
+            return items[int(choice) - 1]
+        except IndexError:
+            print("Please choose a number between 1 and", len(items))
+        except ValueError:
+            print("Invalid choice. Please choose a number between 1 and", len(items))
 
