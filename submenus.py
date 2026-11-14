@@ -36,7 +36,7 @@ def pupil_menu(school):
             case "4": # delete pupuil
                 remove_pupil(school)
             case "5":
-                continue
+                display_sorted_pupils(school)
             case "6":
                 continue
             case "7":

@@ -368,3 +368,4 @@ def test_sort_pupils():
     print("--print pupils sorted--")
     submenus.display_sorted_pupils(school)
 test_sort_pupils()
+# also tested from menus
