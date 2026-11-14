@@ -1,6 +1,7 @@
 # create class School 8.11.2026
 from datetime import date
 
+import pupil
 import validators
 from enums import Gender
 from pupil import Pupil
@@ -80,6 +81,30 @@ class School:
                 return pupil
         return None
 
+    #UPDATE PUPIL
+    def update_pupil(self, pupil_id, field, new_value):
+        p = self.find_pupil(pupil_id)
+        if p is not None:
+            match field:
+                case "first_name":
+                    p.set_first_name(new_value)
+                case "last_name":
+                    p.set_last_name(new_value)
+                case "birthday":
+                    p.set_birthday(new_value)
+                case "gender":
+                    p.set_gender(new_value)
+                case "middle_name":
+                    p.set_middle_name(new_value)
+                case "allergies":
+                    p.set_allergies(new_value)
+                case _:
+                    raise ValueError("Unknown field")
+            return True # flag to display in submenus that update accepted
+        return False # flag for the display in submenus that pupil_id not found
+
+
+    # DELETE PUPIL
     def delete_pupil(self, pupil_id):
         pupil = self.find_pupil(pupil_id)
         if pupil is None:

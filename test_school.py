@@ -346,7 +346,7 @@ def test_delete_pupil(test_id):
     school.delete_pupil(test_id)
     print("")
     submenus.display_all_pupils(school)
-test_delete_pupil(1)
+#test_delete_pupil(1)
 
 # read and delete include school.has_pupils() check 14.11.2026
 # Delete functionality added and tested with good and bad cases from menus
@@ -367,5 +367,92 @@ def test_sort_pupils():
     submenus.display_all_pupils(school)
     print("--print pupils sorted--")
     submenus.display_sorted_pupils(school)
-test_sort_pupils()
-# also tested from menus
+#test_sort_pupils()
+# also tested from menus 14.11.2026
+
+# test_update_pupil functionality 14.11.2026
+def test_update_pupil():
+    school = School()
+    print("--new test--")
+    p1 = Pupil("Anna", "Rasmussen", date(2014, 3, 2), Gender.F)
+    p2 = Pupil("Leo", "Larsen", date(2014, 3, 15), Gender.N)
+    school.add_pupil(p1)
+    school.add_pupil(p2)
+    print("--print all pupils unsorted--")
+    submenus.display_all_pupils(school)
+    school.update_pupil(1, "first_name", "Annenew")
+    print("--print updated pupil--")
+    print(p1)
+    print("--print all pupils--")
+    submenus.display_all_pupils(school)
+    try: # try an invalid pupil_id
+        school.update_pupil(6, "first_name", "Anneagain")
+        print(p1)
+    except ValueError as e:
+        print(e) # it passed without error, but the update does not take place. Catch in submenus
+    try: # try a valid last_name
+        school.update_pupil(1, "last_name", "Rasmussen")
+        print(p1)
+    except ValueError as e:
+        print(e)
+    try: # try invalid last_name
+        school.update_pupil(1, "last_name", ("Rasmussen"*10))
+        print(p1)
+    except ValueError as e:
+        print(e)
+    try:  # try a valid middle_name
+        school.update_pupil(1, "middle_name", "Marie")
+        print(p1)
+    except ValueError as e:
+        print(e)
+    try:  # try invalid last_name
+        school.update_pupil(1, "middle_name", ("Marie" * 11))
+        print(p1)
+    except ValueError as e:
+        print(e)
+    try:  # try middle_name None
+        school.update_pupil(1, "middle_name", "")
+        print(p1)
+    except ValueError as e:
+        print(e)
+    try:  # try valid date
+        school.update_pupil(1, "birthday", "2012-10-24")
+        print(p1)
+    except ValueError as e:
+        print(e)
+    try:  # try invalid date
+        school.update_pupil(1, "birthday", "2012-10-35")
+        print(p1)
+    except ValueError as e:
+        print(e)
+    try:  # try valid gender
+        school.update_pupil(1, "gender", Gender.N)
+        print(p1)
+    except ValueError as e:
+        print(e)
+    try:  # try invalid gender
+        school.update_pupil(1, "gender", "L")
+        print(p1)
+    except ValueError as e:
+        print(e)
+    try:  # try invalid date
+        school.update_pupil(1, "birthday", "2012-10-35")
+        print(p1)
+    except ValueError as e:
+        print(e)
+    try:  # try valid allergies
+        school.update_pupil(1, "allergies", "Peanuts")
+        print(p1)
+    except ValueError as e:
+        print(e)
+    try:  # try invalid allergies
+        school.update_pupil(1, "allergies", ("L"*51))
+        print(p1)
+    except ValueError as e:
+        print(e)
+    try:  # try allergies None
+        school.update_pupil(1, "allergies", "")
+        print(p1)
+    except ValueError as e:
+        print(e)
+test_update_pupil()
