@@ -5,6 +5,9 @@
 # Created 12.11.2026
 
 from datetime import date
+from wsgiref import validate
+
+import validators
 from enums import Gender
 from pupil import Pupil
 from classroom import Classroom
@@ -91,3 +94,22 @@ def ask_birthday():
 def ask_allergies(): # no allergies is caught in the validation
     allergies = input("Does the pupil have any allergies (Please push Enter, if none):  ")
     return allergies
+
+def ask_which_pupil(label, max_id=None):
+    while True:
+        try:
+            pupil_id = input(f"Which pupil would you like to {label} (Please enter pupil_id)?:  ")
+            pupil_id = validators.validate_int_range(pupil_id, 'pupil_id',1, max_id)
+            return pupil_id
+        except ValueError as e:
+            print(e)
+
+def ask_confirmation(label):
+    confirmation = input(f"Do you wish to {label.lower()}? Y/N:  ")
+    if confirmation.strip().upper() == "Y":
+        print(f"{label.capitalize()} confirmed")
+        return True
+    else:
+        print(f"{label.capitalize()} cancelled")
+        return False
+

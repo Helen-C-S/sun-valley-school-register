@@ -46,8 +46,9 @@ def validate_int_range(value, label, min_value, max_value=None):
         value = int(value)  # 10.11.2026
     except ValueError:
         raise ValueError(f"{label} must be a whole number")
-    if value < 1:
+    if value < min_value:
         raise ValueError(f"{label} must be {min_value} or greater")
     if max_value is not None and value > max_value:
         raise ValueError(f"{label} cannot be greater than {max_value}")
+    return value
 

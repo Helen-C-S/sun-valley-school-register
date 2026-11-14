@@ -348,5 +348,5 @@ def test_delete_pupil(test_id):
     submenus.display_all_pupils(school)
 test_delete_pupil(1)
 
-
-
+# read and delete include school.has_pupils() check 14.11.2026
+# Delete functionality added and tested with good and bad cases from menus

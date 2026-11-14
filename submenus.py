@@ -24,17 +24,17 @@ def pupil_menu(school):
         choice = input("Which choice would you like to make?  ")
 
         match choice:
-            case "1":
-                p = build_pupil(school)
+            case "1": # register new pupil
+                p = build_pupil(school) # in this script, collects user input
                 if p is not None:
                     school.add_pupil(p)
                     print(f"Registered: {p}")
-            case "2":
-                display_all_pupils()
+            case "2": # retrieve all pupils
+                display_all_pupils(school)
             case "3":
                 continue
-            case "4":
-                continue
+            case "4": # delete pupuil
+                remove_pupil(school)
             case "5":
                 continue
             case "6":
@@ -95,9 +95,29 @@ def build_pupil(school):
 
 # READ ALL PUPILS
 def display_all_pupils(school):
-    pupils = school.get_pupils()
-    if not pupils:
-        print("No pupils registered yet")
-    for p in pupils:
+    if school.has_pupils():
+        pupils = school.get_pupils()
+        for p in pupils:
+            print(p)
+    else:
+        print("No pupils found")
+
+
+# DELETE PUPIL
+def remove_pupil(school):
+    if school.has_pupils():
+        max_id = school.get_next_pupil_id() - 1
+        pupil_id = user_input.ask_which_pupil('delete', max_id)
+        p = school.find_pupil(pupil_id)
+        if p is None:
+            print(f"No pupil with id {pupil_id}")
+            return
         print(p)
+        print("You are about to delete the following pupil:")
+        print(p)
+        confirm = user_input.ask_confirmation("Delete")
+        if confirm:
+            school.delete_pupil(pupil_id)
+    else:
+        print("No pupils found")
 

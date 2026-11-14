@@ -66,6 +66,14 @@ class School:
 
     # UPDATE (edit_pupil functionality in submenus)
     # find_pupil supports both UPDATE and DELETE
+
+    def has_pupils(self):
+        pupils = self.get_pupils()
+        if not pupils:
+            return False
+        else:
+            return True
+
     def find_pupil(self, pupil_id):
         for pupil in self.__pupils:
             if pupil.get_pupil_id() == pupil_id:
