@@ -5,13 +5,8 @@
 # Created 12.11.2026
 
 from datetime import date
-from wsgiref import validate
-
 import validators
 from enums import Gender
-from pupil import Pupil
-from classroom import Classroom
-from school import School
 
 PUPIL_FIELDS = ("first_name", "last_name", "middle_name", "birthday", "gender", "allergies")
 
