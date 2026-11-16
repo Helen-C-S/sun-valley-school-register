@@ -10,11 +10,11 @@ def main():
     running=True
     while running == True:
         print("")
-        print("Welcome to Sun Valley's registration system.")
-        print("What would you like to work?")
+        print("Welcome to Sun Valley School's registration system.")
+        print("What would you like to work with?")
         print("1. Pupils")
-        print("2. Classes")
-        print("0. Exit and save")
+        print("2. Classes (limited functionality)")
+        print("0. Exit (save not implemented)")
         choice = input("Which choice would you like to make?  ")
 
         match choice:

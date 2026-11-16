@@ -59,7 +59,7 @@ def ask_birthday():
     # collect month
     while True:
         try:
-            month = input("Month:  ")
+            month = input("Month (1-12):  ")
             if len(month) > 2:
                 raise ValueError
             month = int(month)
@@ -71,7 +71,7 @@ def ask_birthday():
     # collect day
     while True:
         try:
-            day = input("Day:  ")
+            day = input("Day (1-31):  ")
             if len(day) > 2:
                 raise ValueError
             day = int(day)

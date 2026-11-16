@@ -2,24 +2,22 @@
 # Belongs to Sun Valley School
 # Created 12.11.2026
 
-from datetime import date
-from enums import Gender
 from pupil import Pupil
 from classroom import Classroom
-from school import School
 import user_input
 
 def pupil_menu(school):
     while True:
         print("")
-        print("This is Sun Valley's register of pupils.")
+        print("This is Sun Valley School's register of pupils.")
         print("1. Register new pupil")
         print("2. See list of all enrolled pupils")
         print("3. Update personal details for a pupil")
         print("4. Delete a pupil")
-        print("5. Sort pupils")
-        print("6. Find pupils who do not have a classroom")
-        print("7. Place a pupil in a classroom or change classroom")
+        print("5. Sort pupils by last name")
+        print("6. Find a pupil. Not implemented.")
+        print("7. Find pupils who do not have a classroom. Not implemented")
+        print("8. Place a pupil in a classroom or change classroom. Not implemented.")
         print("0. Back to the main menu")
         choice = input("Which choice would you like to make?  ")
 
@@ -41,6 +39,8 @@ def pupil_menu(school):
                 continue
             case "7":
                 continue
+            case "8":
+                continue
             case "0":
                 print("Returning to main menu...")
                 return          # back to the main menu
@@ -50,7 +50,7 @@ def pupil_menu(school):
 def classroom_menu(school):
     while True:
         print("")
-        print("This is Sun Valley's register of classes.")
+        print("This is Sun Valley School's register of classes.")
         print("1. Register new class")
         print("2. See list of classes in the school")
         print("3. Update the details for a class")
@@ -119,7 +119,7 @@ def edit_pupil(school):
     while True:
         try:
             # look up ask_<field> by name; relies on consistent naming
-            # Beyond scope of the assignment but the approach is known from MATLAB eval
+            # Beyond scope of the course content but the approach is known from MATLAB eval
             ask_function = getattr(user_input, "ask_" + field)  # e.g. user_input.ask_birthday
             new_value = ask_function()  # call it
         except AttributeError:
