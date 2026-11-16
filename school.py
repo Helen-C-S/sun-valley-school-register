@@ -15,7 +15,7 @@ class School:
         self.__classrooms = []
         self.__next_pupil_id = 1
 
-    # CREATE 8.11.2026, pupil_id counter added 10.11.2026
+    # PUPILS CREATE
     def add_pupil(self, pupil):
         new_id = self.get_next_pupil_id() # pupil_id only goes through getter/setters
         pupil.set_pupil_id(new_id)
@@ -38,28 +38,10 @@ class School:
         self.__next_pupil_id = next_pupil_id
 
 
-    # See if classroom already exists 10.11.2026
-    def find_classroom(self, class_id):
-        for classroom in self.__classrooms:
-            if classroom.get_class_id() == class_id:
-                return classroom
-        return None
+    def get_next_pupil_id(self):
+        return self.__next_pupil_id
 
-
-    # CREATE and prevent duplication of classrooms
-    def add_classroom(self, classroom):
-        if self.find_classroom(classroom.get_class_id()) is not None:
-            raise ValueError(f"Classroom {classroom.get_class_id()} already exists")
-        self.__classrooms.append(classroom)
-        print(f"Classroom {classroom.get_class_id()} is now added to the school.")
-
-
-    # READ (display_all_pupils functionality found in submenus)
-    # getters for pupils list
-    def get_pupils(self):
-        return list(self.__pupils)
-
-    #has_pupils functionality neccessary for READ, UPDATE, CREATE and SORT
+    # RETRIEVE PUPILS
     def has_pupils(self):
         pupils = self.__pupils
         if not pupils:
@@ -67,21 +49,10 @@ class School:
         else:
             return True
 
-    def read_classrooms(self):
-        return list(self.__classrooms)
+    def get_pupils(self):
+        return list(self.__pupils)
 
-    def get_next_pupil_id(self):
-        return self.__next_pupil_id
-
-    # UPDATE (edit_pupil functionality in submenus)
-    # find_pupil supports both UPDATE and DELETE
-    def find_pupil(self, pupil_id):
-        for pupil in self.__pupils:
-            if pupil.get_pupil_id() == pupil_id:
-                return pupil
-        return None
-
-    #UPDATE PUPIL
+    # UPDATE
     def update_pupil(self, pupil_id, field, new_value):
         p = self.find_pupil(pupil_id)
         if p is not None:
@@ -102,9 +73,9 @@ class School:
                     raise ValueError("Unknown field")
             return True # flag to display in submenus that update accepted
         return False # flag for the display in submenus that pupil_id not found
+    #has_pupils functionality neccessary for READ, UPDATE, CREATE and SORT
 
-
-    # DELETE PUPIL
+    # DELETE PUPILS
     def delete_pupil(self, pupil_id):
         pupil = self.find_pupil(pupil_id)
         if pupil is None:
@@ -112,6 +83,31 @@ class School:
         self.__pupils.remove(pupil)
         return True
 
-    # SORT PUPILS
+    #SORT PUPILS
     def get_sorted_pupils(self):
         return sorted(self.__pupils, key=lambda pupil: pupil.get_last_name())
+
+    # FIND PUPILS
+    def find_pupil(self, pupil_id):
+        for pupil in self.__pupils:
+            if pupil.get_pupil_id() == pupil_id:
+                return pupil
+        return None
+
+    # CREATE CLASSROOMS
+    def add_classroom(self, classroom):
+        if self.find_classroom(classroom.get_class_id()) is not None:
+            raise ValueError(f"Classroom {classroom.get_class_id()} already exists")
+        self.__classrooms.append(classroom)
+        print(f"Classroom {classroom.get_class_id()} is now added to the school.")
+
+    # RETRIEVE CLASSROOMS
+    def read_classrooms(self):
+        return list(self.__classrooms)
+
+    # FIND CLASSROOM
+    def find_classroom(self, class_id):
+        for classroom in self.__classrooms:
+            if classroom.get_class_id() == class_id:
+                return classroom
+        return None
