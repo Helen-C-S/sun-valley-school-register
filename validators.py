@@ -12,10 +12,12 @@ def validate_name(value, label):
     if value is None or not value.strip():
         raise ValueError(f"{label} cannot be empty")
     value = value.strip()
+    if ";" in value:
+        raise ValueError(f"{label} cannot contain a semicolon")
     if len(value) > MAX_NAME_LENGTH:
         raise ValueError(f"{label} cannot be longer than {MAX_NAME_LENGTH} characters")
-    if len(value) <= MIN_NAME_LENGTH:
-        raise ValueError(f"{label} cannot be short than {MIN_NAME_LENGTH} characters")
+    if len(value) < MIN_NAME_LENGTH:
+        raise ValueError(f"{label} cannot be shorter than {MIN_NAME_LENGTH} characters")
     return value
 
 def validate_optional_text(value, label):
@@ -24,7 +26,7 @@ def validate_optional_text(value, label):
     elif len(value.strip()) > MAX_NAME_LENGTH:
         raise ValueError(f"{label} cannot be longer than {MAX_NAME_LENGTH} characters")
     else:
-        value = value.strip()
+        value = value.strip().replace(";",",") # semi-colon is the seperator for saving/loading
     return value
 
 def validate_date(value, label):

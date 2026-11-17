@@ -504,6 +504,9 @@ def test_edit_pupil():
 #test_update_pupil()
 #test_edit_pupil()
 
-
+## 17.11.2026, classroom (class_id) added to pupil
+#test_basic_validation_pupil()
+#test_add_objects_to_school()
+test_next_pupil_id()
 
 

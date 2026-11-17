@@ -38,9 +38,13 @@ class Pupil:
         self.__allergies = validators.validate_optional_text(allergies, "Allergies")
 
 
-    # pupil_id added to pupil objects before pupil appended to pupils
+    # pupil_id come from school.py
     def set_pupil_id(self, pupil_id):
         self.__pupil_id = pupil_id
+
+    # class_id comes from classroom.py added 17.11.2026
+    def set_class_id(self, class_id):
+        self.__class_id = class_id
 
     # getters
     def get_first_name(self):
@@ -72,9 +76,12 @@ class Pupil:
     def get_pupil_id(self):
         return self.__pupil_id
 
+    def get_class_id(self):
+        return self.__class_id
+
     # to print the contents of the object
     def __str__(self):
-        return (f"pupil_id: {self.__pupil_id} "
+        return (f"pupil_id: {self.__pupil_id}, classroom: {self.__class_id} "
                 f"\nFirst name: {self.__first_name}, Middle Name: {self.__middle_name}, Last name: {self.__last_name},"
                 f"\nBirthday:  {self.__birthday}, Gender: {self.__gender.value}, Allergies: {self.__allergies}")
 

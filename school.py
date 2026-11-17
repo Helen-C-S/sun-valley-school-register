@@ -111,3 +111,18 @@ class School:
             if classroom.get_class_id() == class_id:
                 return classroom
         return None
+
+
+    # HELPER FUNCTIONS
+    # save pupils
+    def save_pupils(self):
+        if not self.__pupils:  # if the orders list is empty
+            print("No pupils to save")
+            return
+        filename = datetime.datetime.now().strftime("data/pupils_%Y%m%d_%H%M%S.txt")
+        with open(filename, "w") as f:
+            for p in self.__pupils:
+                f.write(f"{p.get_pupil_id()};{p.get_class_id()};"
+                        f"{p.get_first_name()};{p.get_last_name()};{p.get_middle_name()}; "
+                        f"{p.get_gender().name};{p.get_allergies()}\n")
+        print("Pupils saved to", filename)
