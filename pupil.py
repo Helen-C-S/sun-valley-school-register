@@ -81,7 +81,16 @@ class Pupil:
 
     # to print the contents of the object
     def __str__(self):
-        return (f"pupil_id: {self.__pupil_id}, classroom: {self.__class_id} "
+        if self.get_pupil_id() is None:
+            display_pupil_id = 'unassigned'
+        else:
+            display_pupil_id = f'{self.__pupil_id:04d}' # display zero padding
+        if self.get_class_id() is None:
+            display_class_id = 'unassigned'
+        else:
+            display_class_id = f'{self.__class_id}' # display zero padding
+
+        return (f"pupil_id: {display_pupil_id}, classroom: {display_class_id} "
                 f"\nFirst name: {self.__first_name}, Middle Name: {self.__middle_name}, Last name: {self.__last_name},"
                 f"\nBirthday:  {self.__birthday}, Gender: {self.__gender.value}, Allergies: {self.__allergies}")
 

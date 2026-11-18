@@ -173,7 +173,7 @@ def test_add_objects_to_school():
     school = School()
     school.add_pupil(p1)
     school.add_pupil(p2)
-    school.get_pupils()
+    submenus.display_all_pupils(school)
     # add classroom to school 8.11.2026
     c1 = Classroom("7A", "Katrina", 25)
     c2 = Classroom("0B", "Christina", 25)
@@ -473,6 +473,18 @@ def test_edit_pupil():
     submenus.display_all_pupils(school)
     submenus.edit_pupil(school)
 
+# test of saving pupils 18.11.2026
+def test_save_pupils():
+    school = School()
+    print("--new test--")
+    p1 = Pupil("Anna", "Rasmussen", date(2014, 3, 2), Gender.F)
+    p2 = Pupil("Leo", "Larsen", date(2014, 3, 15), Gender.N)
+    school.add_pupil(p1)
+    school.add_pupil(p2)
+    print("--testing saved pupils--")
+    school.save_pupils()
+
+
 # historical test order, re-organised on 16.11.2026
 #test_enums()
 #test_instantiate_pupil()
@@ -503,10 +515,10 @@ def test_edit_pupil():
 ## also tested from menus 14.11.2026
 #test_update_pupil()
 #test_edit_pupil()
-
-## 17.11.2026, classroom (class_id) added to pupil
-#test_basic_validation_pupil()
-#test_add_objects_to_school()
-test_next_pupil_id()
+#test_add_objects_to_school() ## 17.11.2026, classroom (class_id) added to pupil
+#test_next_pupil_id()
+#test_save_pupils()
+#test_add_objects_to_school() # zero padding added to pupil_id, class_id 'unassigned' 18.12.2026
+test_save_pupils() # also tested via main.py
 
 

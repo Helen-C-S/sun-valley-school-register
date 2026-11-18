@@ -21,6 +21,7 @@ def main():
             case "1": submenus.pupil_menu(school)
             case "2": submenus.classroom_menu(school)
             case "0":
+                school.save_pupils()
                 print("Exiting...")
                 running = False
             case _:

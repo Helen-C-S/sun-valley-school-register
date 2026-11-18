@@ -1,6 +1,5 @@
 # create class School 8.11.2026
-from datetime import date
-
+import datetime
 import pupil
 import validators
 from enums import Gender
@@ -87,8 +86,9 @@ class School:
     def get_sorted_pupils(self):
         return sorted(self.__pupils, key=lambda pupil: pupil.get_last_name())
 
-    # FIND PUPILS
+    # FIND PUPIL
     def find_pupil(self, pupil_id):
+        pupil_id = int(pupil_id) # protection against zero-padded inputs
         for pupil in self.__pupils:
             if pupil.get_pupil_id() == pupil_id:
                 return pupil
@@ -113,7 +113,7 @@ class School:
         return None
 
 
-    # HELPER FUNCTIONS
+    # SAVE/LOAD FUNCTIONS
     # save pupils
     def save_pupils(self):
         if not self.__pupils:  # if the orders list is empty
@@ -122,7 +122,7 @@ class School:
         filename = datetime.datetime.now().strftime("data/pupils_%Y%m%d_%H%M%S.txt")
         with open(filename, "w") as f:
             for p in self.__pupils:
-                f.write(f"{p.get_pupil_id()};{p.get_class_id()};"
+                f.write(f"{p.get_pupil_id():04d};{p.get_class_id()};" # pupil_id zero-pad
                         f"{p.get_first_name()};{p.get_last_name()};{p.get_middle_name()}; "
                         f"{p.get_gender().name};{p.get_allergies()}\n")
         print("Pupils saved to", filename)
