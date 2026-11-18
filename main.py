@@ -8,6 +8,7 @@ import submenus
 def main():
     school = School()
     running=True
+    school.load_pupils()
     while running == True:
         print("")
         print("Welcome to Sun Valley School's registration system.")

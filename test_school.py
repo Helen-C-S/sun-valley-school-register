@@ -484,6 +484,12 @@ def test_save_pupils():
     print("--testing saved pupils--")
     school.save_pupils()
 
+def test_load_pupils():
+    school = School()
+    print("--loading pupils--")
+    school.load_pupils()
+    print(f"The next pupil_id is:  {school.get_next_pupil_id()}")
+
 
 # historical test order, re-organised on 16.11.2026
 #test_enums()
@@ -524,5 +530,10 @@ def test_save_pupils():
 #test_ask_allergies() # 18.11.2026
 #test_instantiate_pupil()
 #test_edit_pupil()
-#test_birthday() # birthday validators refactored, also tested from main
+#test_birthday() # 18.11.2026 birthday validators refactored, also tested from main
+#test_save_pupils() # 18.11.2026
+#test_load_pupils()
+#test_load_pupils() # tested with intentionally corrupted row, filename and empty contents 18.11.2026
+test_save_pupils()
+test_load_pupils() # 18.11.2026 also tested from main with starting and re-starting
 
