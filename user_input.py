@@ -14,25 +14,29 @@ def ask_first_name():
     while True:
         try:
             first_name = input("What is the pupil's first name:  ")
-            if len(first_name) < 2:
-                raise ValueError
+            validators.validate_name(first_name, "First name")
             return first_name
-        except ValueError:
-            print("The pupil's name must contain at least two letters")
+        except ValueError as e:
+            print(e)
 
 def ask_middle_name(): # no middle name is converted to None in the validation
-    middle_name = input("What is the pupil's middle name (Please push Enter, if none):  ")
-    return middle_name
+    while True:
+        try:
+            middle_name = input("What is the pupil's middle name (Please push Enter, if none):  ")
+            validators.validate_optional_text(middle_name, "Middle name", False)
+            return middle_name
+        except ValueError as e:
+            print(e)
 
 def ask_last_name():
     while True:
         try:
             last_name = input("What is the pupil's last name:  ")
-            if len(last_name) < 2:
-                raise ValueError
+            validators.validate_name(last_name, "Last name")
             return last_name
-        except ValueError:
-            print("The pupil's last name must contain at least two letters")
+        except ValueError as e:
+            print(e)
+
 
 def ask_gender():
     while True:
@@ -45,51 +49,45 @@ def ask_gender():
             print("Please enter either F, M or N")
 
 def ask_birthday():
-    print("When was the pupil born?")
-    # collect year
     while True:
-        try:
-            year = input("Year (YYYY):  ")
-            if len(year) != 4:
-                raise ValueError
-            year = int(year)
-            break # valid year input
-        except ValueError:
-            print("Please enter numbers in YYYY format")
-    # collect month
-    while True:
-        try:
-            month = input("Month (1-12):  ")
-            if len(month) > 2:
-                raise ValueError
-            month = int(month)
-            if month not in range(1, 13):
-                raise ValueError
-            break # valid month collected
-        except ValueError:
-            print("Please enter month in numbers (1-12)")
-    # collect day
-    while True:
-        try:
-            day = input("Day (1-31):  ")
-            if len(day) > 2:
-                raise ValueError
-            day = int(day)
-            if day not in range(1, 32):
-                raise ValueError
-        except ValueError:
-            print("Please enter day in numbers (1-31)")
-            continue # ask for the date again
-        # assemble date and check for valid date combinations.
+        print("When was the pupil born?")
+        while True: # collect year
+            try:
+                year = input("Year (YYYY):  ")
+                year = validators.validate_year(year)
+                break
+            except ValueError as e:
+                print(e)
+        while True:
+            try: # collect month
+                month = input("Month (1-12):  ")
+                month = validators.validate_int_range(month, "The month", 1, 12)
+                break # valid month collected
+            except ValueError as e:
+                print(e)
+        while True: # collect day
+            try:
+                day = input("Day (1-31):  ")
+                day = validators.validate_int_range(day, "The day", 1, 31)
+                break
+            except ValueError as e:
+                print(e)
+            # assemble date and check for valid date combinations.
         try:
             birthday = date(year, month, day)
+            birthday = validators.validate_date(birthday, "Date of birth")
             return birthday
         except ValueError as e:
-            print(f"That date does not exist ({e}). Please enter the date again")
+            print(e)
 
 def ask_allergies(): # no allergies is caught in the validation
-    allergies = input("Does the pupil have any allergies (Please push Enter, if none):  ")
-    return allergies
+    while True:
+        try:
+            allergies = input("Does the pupil have any allergies (Please push Enter, if none):  ")
+            validators.validate_optional_text(allergies, "Allergies", True)
+            return allergies
+        except ValueError as e:
+            print(e)
 
 def ask_which_pupil(label, max_id=None):
     while True:
@@ -117,12 +115,5 @@ def ask_pupil_field(label):
         print(f"{i}. {item.replace('_',' ').capitalize()}")
     while True:
         choice = input("Which choice would you like to make?  ")
-        try:
-            if int(choice) < 1:
-                raise IndexError
-            field = items[int(choice) - 1]
-            return field
-        except IndexError:
-            print("Please choose a number between 1 and", len(items))
-        except ValueError:
-            print("Invalid choice. Please choose a number between 1 and", len(items))
+        number = validators.validate_int_range(choice, "The choice", 1, len(items))
+        return items[number - 1]

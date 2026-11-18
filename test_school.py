@@ -519,6 +519,10 @@ def test_save_pupils():
 #test_next_pupil_id()
 #test_save_pupils()
 #test_add_objects_to_school() # zero padding added to pupil_id, class_id 'unassigned' 18.12.2026
-test_save_pupils() # also tested via main.py
-
+#test_save_pupils() # also tested via main.py
+#test_name_input() # 18.11.2026 validators refactored
+#test_ask_allergies() # 18.11.2026
+#test_instantiate_pupil()
+#test_edit_pupil()
+#test_birthday() # birthday validators refactored, also tested from main
 

@@ -14,7 +14,7 @@ def main():
         print("What would you like to work with?")
         print("1. Pupils")
         print("2. Classes (limited functionality)")
-        print("0. Exit (save not implemented)")
+        print("0. Save and exit")
         choice = input("Which choice would you like to make?  ")
 
         match choice:
