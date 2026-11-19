@@ -113,7 +113,7 @@ class School:
 
 
     # SAVE/LOAD FUNCTIONS
-    # save pupils
+    # save pupils 17.11.2026
     def save_pupils(self):
         if not self.__pupils:  # if the orders list is empty
             print("No pupils to save")
@@ -126,7 +126,7 @@ class School:
                         f"{p.get_gender().name};{p.get_allergies()}\n")
         print("Pupils saved to", filename)
 
-    #load pupils
+    #load pupils 18.11.2026
     def load_pupils(self):
         list_pupil_ids = []
         try: # catch missing file

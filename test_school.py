@@ -490,6 +490,16 @@ def test_load_pupils():
     school.load_pupils()
     print(f"The next pupil_id is:  {school.get_next_pupil_id()}")
 
+def test_sort_by_first_name():
+    school = School()
+    print("--loading pupils--")
+    school.load_pupils()
+    print("--testing sort by first_name--")
+    sorted_list = sorted(school.get_pupils(), key=lambda pupil: pupil.get_first_name())
+    for p in sorted_list:
+        print(p)
+
+
 
 # historical test order, re-organised on 16.11.2026
 #test_enums()
@@ -534,6 +544,7 @@ def test_load_pupils():
 #test_save_pupils() # 18.11.2026
 #test_load_pupils()
 #test_load_pupils() # tested with intentionally corrupted row, filename and empty contents 18.11.2026
-test_save_pupils()
-test_load_pupils() # 18.11.2026 also tested from main with starting and re-starting
+#test_save_pupils()
+#test_load_pupils() # 18.11.2026 also tested from main with starting and re-starting
+test_sort_by_first_name()
 
