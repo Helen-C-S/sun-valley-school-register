@@ -21,13 +21,14 @@ To run the tests:
 - Update a pupil's personal details, one field at a time
 - Delete a pupil, with confirmation
 - Sort pupils by last name
+- Save to and load from file
 
 **Planned, not yet implemented:**
 - Find a pupil by name
 - Classroom management (create, list, update, delete, sort)
 - Place a pupil in a classroom, with a capacity check
 - Show pupils in a classroom, and pupils without a classroom
-- Save to and load from file
+
 
 ## Project structure
 
